@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, Pressable, KeyboardAvoidingView} from 'react-native';
 import  SubmitBtn from '../Components/ButtonSubmit';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 
 const LoginForm = () => { 
@@ -9,10 +10,15 @@ const LoginForm = () => {
   const [emailFocus, setEmailFocus] = useState(false);
   const [passwordFocus, setPasswordFocus] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+ 
+  const navigation = useNavigation();
+ /*  const { params: { userId } } = useRoute(); */
 
   const handleFormSubmit = () => {
     { (!email || !password) && console.log("Заповніть поля форми") }
     { email && password && console.log("Credentials", `${email} ${password}`); }
+    { email && password && navigation.navigate("Home") }
+    
     setEmail('');
     setPassword('');
   };
@@ -53,9 +59,14 @@ const LoginForm = () => {
          
       <SubmitBtn title="Увійти" onPress={handleFormSubmit} />
     
-      <Pressable style={styled.linkWrap} onPress={hanleScreenChange}> 
+      <Pressable style={styled.linkWrap} > 
         <Text style={styled.linkText}> Немає акаунту? </Text>
-        <Text style={[styled.linkText, {textDecorationLine: "underline"}]}> Зареєструватися </Text>
+        <Text
+          style={[styled.linkText, { textDecorationLine: "underline" }]}
+          onPress={() => navigation.navigate("Registration")}
+        >
+          Зареєструватися
+        </Text>
       </Pressable>
     </View>     
   );

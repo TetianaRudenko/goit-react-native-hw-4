@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View,} from 'react-native';
 import Avatar from "../Components/FormComponents/Avatar";
 import SubmitBtn from "../Components/ButtonSubmit";
-
+import { useNavigation } from '@react-navigation/native';
 
 const RegistrationForm= () => {
   
@@ -14,17 +14,20 @@ const RegistrationForm= () => {
   const [passwordFocus, setPasswordFocus] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
+  const navigation = useNavigation();
+
   const handleFormSubmit = () => {
     { (!login || !email || !password ) && console.log("Заповніть поля форми") }
     { login && email && password && console.log("Credentials", `${login} ${email} ${password}`) }
+    { login && email && password && navigation.navigate("Home") }
     setLogin('');
     setEmail('');
     setPassword('');
   };
 
-  const hanleScreenChange = () => {
+/*   const hanleScreenChange = () => {
     console.log('навігація на сторінку Логіну')
-  };
+  }; */
 
   return ( 
     <View style={styled.container }>
@@ -71,9 +74,14 @@ const RegistrationForm= () => {
       <SubmitBtn title="Зареєстуватися" onPress={handleFormSubmit} />
        
         
-      <Pressable style={styled.linkWrap} onPress={hanleScreenChange}> 
+      <Pressable style={styled.linkWrap} > 
         <Text style={styled.linkText}> Вже є акаунт? </Text>
-        <Text style={[styled.linkText, {textDecorationLine: "underline"}]}> Увійти </Text>
+        <Text
+          style={[styled.linkText, { textDecorationLine: "underline" }]}
+          onPress={() => navigation.navigate("Login", { sessionId: 45, userId: "22e24" })}
+        >
+          Увійти
+        </Text>
       </Pressable>
       
     </View>   
