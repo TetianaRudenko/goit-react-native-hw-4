@@ -12,28 +12,28 @@ import LoginForm from '../Components/LoginForm';
 const LoginScreen = () => {
   
   return ( 
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-    >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <KeyboardAvoidingView
+        style={styled.container}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
         <ImageBackground
           source={imageBg}
           resizeMode="cover"
-          style={styles.image}
+          style={styled.image}
         >
 
           <LoginForm />
 
+          <StatusBar style="auto" />
         </ImageBackground>
-      </TouchableWithoutFeedback>
-      <StatusBar style="auto" />
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
        
   );
 }
 
-const styles = StyleSheet.create({
+const styled = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-end',

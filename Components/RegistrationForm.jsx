@@ -25,10 +25,6 @@ const RegistrationForm= () => {
     setPassword('');
   };
 
-/*   const hanleScreenChange = () => {
-    console.log('навігація на сторінку Логіну')
-  }; */
-
   return ( 
     <View style={styled.container }>
       <Avatar />

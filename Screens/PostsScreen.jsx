@@ -23,25 +23,7 @@ const PostsScreen = () => {
         </View>
       </View>
 
-      <View style={styled.footerBar}>
-        <Feather
-          name="grid"
-          size={24}
-          color="#212121CC" />
-        <Pressable style={styled.plusIcon}>
-          <AntDesign
-            name="plus"
-            size={24}
-            color="rgba(255, 255, 255, 1)"
-            style={{alignItems:"center"}}
-          />
-        </Pressable>
-        <Feather
-          name="user"
-          size={24}
-          color="#212121CC"
-        />
-      </View>
+      
     </View>
   );
 };

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View, Pressable, KeyboardAvoidingView} from 'react-native';
+import { StyleSheet, Text, TextInput, View, Pressable} from 'react-native';
+import { useNavigation} from '@react-navigation/native';
 import  SubmitBtn from '../Components/ButtonSubmit';
-import { useNavigation, useRoute } from '@react-navigation/native';
-
 
 const LoginForm = () => { 
   const [email, setEmail] = useState('');
@@ -12,7 +11,6 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
  
   const navigation = useNavigation();
- /*  const { params: { userId } } = useRoute(); */
 
   const handleFormSubmit = () => {
     { (!email || !password) && console.log("Заповніть поля форми") }
@@ -23,25 +21,22 @@ const LoginForm = () => {
     setPassword('');
   };
 
-  const hanleScreenChange = () => {
-    console.log('навігація на сторінку Регіcтрації')
-  };
 
   return (
     <View style={styled.container}>
-        <Text style={styled.title}>Увійти</Text>      
-        <TextInput
-          placeholder="Адреса електронної пошти"
-          style={emailFocus ? styled.inputOnFocus : styled.input}
-          onFocus={() => setEmailFocus(true)}
-          onBlur={() => setEmailFocus(false)}
-          onChangeText={(newEmail) => setEmail(newEmail)}
-          value={email}
-          cursorColor="#FF6C00"
-          keyboardType='email-address'
-        />
-      <View> 
+      <Text style={styled.title}>Увійти</Text>      
+      <TextInput
+        placeholder="Адреса електронної пошти"
+        style={emailFocus ? styled.inputOnFocus : styled.input}
+        onFocus={() => setEmailFocus(true)}
+        onBlur={() => setEmailFocus(false)}
+        onChangeText={(newEmail) => setEmail(newEmail)}
+        value={email}
+        cursorColor="#FF6C00"
+        keyboardType='email-address'
+      />
 
+      <View> 
         <TextInput
           placeholder="Пароль"
           style={passwordFocus ? [styled.inputOnFocus, {marginBottom: 42,}] : [styled.input, {marginBottom: 42,}]}
@@ -134,9 +129,6 @@ const styled = StyleSheet.create({
     marginTop: 16,
   },
   linkText: {
-    //marginTop: 16,
-    
-    //textAlign: 'center',
     fontSize: 16,
     lineHeight: 19,
     color: '#1B4371',

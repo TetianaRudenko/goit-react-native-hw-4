@@ -2,7 +2,9 @@ import { Text, StyleSheet, Pressable } from 'react-native';
 
 const SubmitBtn = ({ title, onPress }) => {
   return (
-    <Pressable style={({ pressed }) => [!pressed ? styled.button : [styled.button, {backgroundColor: '#BDBDBD'}]]} onPress={onPress}>
+    <Pressable
+      style={({ pressed }) => [!pressed ? styled.button : [styled.button, { backgroundColor: '#BDBDBD' }]]}
+      onPress={onPress}>
       <Text style={styled.text}>{title}</Text>
     </Pressable>
   );

@@ -12,11 +12,11 @@ import RegistrationForm from "../Components/RegistrationForm";
 const RegistrationScreen = () => {
   
   return ( 
-    <KeyboardAvoidingView
-      style={styled.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-    >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <KeyboardAvoidingView
+        style={styled.container}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
         <ImageBackground
           source={imageBg}
           resizeMode="cover"
@@ -27,8 +27,8 @@ const RegistrationScreen = () => {
 
           <StatusBar style="auto" />
         </ImageBackground>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
        
   );
 }
@@ -43,7 +43,6 @@ const styled = StyleSheet.create({
     justifyContent: 'flex-end',
   },
 });
-
 
 export default RegistrationScreen; 
 

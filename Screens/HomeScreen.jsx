@@ -5,126 +5,126 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import SubmitBtn from "../Components/ButtonSubmit";
 import { useNavigation } from "@react-navigation/native";
 import { Feather, AntDesign } from '@expo/vector-icons';
+import CreatePostsScreen from "./CreatePostsScreen";
+import CommentsScreen from "./CommentsScreen";
+import ButtonLogOut from "../Components/ButtonLogout";
+import BtnArrowLeft from "../Components/BtnArrowLeft";
+import { Button } from "react-native";
+import ProfileScreen from "./ProfileScreen";
 
-function HomeScreen1() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
-    </View>
-  );
-}
+
 const HomeScreen = () => {
   const Tabs = createBottomTabNavigator();
   const navigation = useNavigation();
   
-  return (
+  return ( 
     <Tabs.Navigator
-      initialRouteName="PostsScreen"
-      screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            if (route.name === 'Posts') {
-              return (
-                <View style={styled.footerBar}>
-
-                <Feather
-                  name="grid"
-                  size={size}
-                  style={focused? [styled.plusIcon]: [{color:"#212121CC"}]}
-                  />
-                <Pressable style={styled.plusIcon}>
-          <AntDesign
-            name="plus"
-            size={24}
-            color="rgba(255, 255, 255, 1)"
-            style={{alignItems:"center"}}
-          />
-                  </Pressable>
-                  <Feather
-          name="user"
-          size={24}
-          color="#212121CC"
-        />
-                  </View>
-              );
-            } else if (route.name === 'Settings') {
-              return (
-                <Ionicons
-                  name={focused ? 'ios-list-box' : 'ios-list'}
-                  size={size}
-                  color={color}
-                />
-              );
-            }
-          },
-          //tabBarInactiveTintColor: 'gray',
-          //tabBarActiveTintColor: 'tomato',
-        })}
+      initialRouteName="PostsScreen"       
     >
-       
+      
       <Tabs.Screen
         name="Posts"
         component={PostsScreen}
         options={{
-          title: "Публікації",
-          headerRight: () => <SubmitBtn onPress={() => navigation.navigate('Login')} />,
-          
-      }}
+          title: "Публікації", 
+          tabBarShowLabel: false, 
+          headerTitle: ()=> <Text style={{flex:1,marginLeft:"50%", paddingHorizontal:11, paddingTop:32,alignItems:"center" }}>Публікації</Text>,
+          headerRight: () => <ButtonLogOut onPress={() => navigation.navigate("Login")} />,
+          headerRightContainerStyle: {
+            flex: 1,
+            paddingRight: 10,     
+          },
+          tabBarIcon: () => {
+            return (
+              <Feather
+                name="grid"
+                size={24}
+                color={"#212121CC"}   
+                onPress={() => navigation.navigate('Posts')}
+              />
+            )
+          }, 
+        }}
+      />
+
+      <Tabs.Screen
+        name="CreatePosts"
+        component={CreatePostsScreen}
+        options={{
+          title: "Створити публікацію", 
+          tabBarStyle: { display: 'none' },
+          headerLeft: () => <BtnArrowLeft onPress={() => navigation.navigate("Posts")} />,
+          headerLeftContainerStyle: {
+            flex: 1,
+            paddingLeft:16,
+          },
+          tabBarIcon: () => {
+            return (
+              
+                   <AntDesign
+                onPress={() => navigation.navigate('CreatePosts')}
+                    name="plus"
+                    size={24}
+                style={[styled.focusedIcon, {
+                  //alignSelf: "center", //justifyContent: "center",
+                  //alignSelf: "center",
+                  alignContent:"center",
+                }]}
+                  />
+                  
+                
+            )
+          },        
+        }}
+      />
+      <Tabs.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          title: "Профіль", 
+          tabBarShowLabel: false,
+         headerShown: false,
+          tabBarIcon: () => {
+            return (
+               <Feather
+                  name="user"
+                  size={24}
+                  color={"#212121CC"} 
+                />
+            )
+          },        
+        }}
       />
     
-        </Tabs.Navigator>
+      </Tabs.Navigator>
+       
   );
 
 };
 
 export default HomeScreen;
 const styled = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    borderTopColor: 'rgba(0, 0, 0, 0.3)',
-    borderBottomColor: 'rgba(0, 0, 0, 0.3)',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    paddingHorizontal:16,
-  },
-  user: {
-    marginTop: 32,
-    marginBottom: 32,
-    flexDirection: 'row',
-  },
-  userPhoto: {
-    width: 60,
-    height: 60,
-    borderRadius: 16,
-    backgroundColor: '#F6F6F6',
-  },
-  userDescription: {
-    marginLeft: 8,
-    justifyContent: 'center',
-  },
-  userName: {
-    fontWeight: 'bold',
-    fontSize: 13,
-    lineHeight: 15,
-    color: '#212121',
-  },
-  userEmail: {
-    fontWeight: 'bold',
-    fontSize: 11,
-    lineHeight: 13,
-    color: 'rgba(33, 33, 33, 0.8)',
-  },
   footerBar: {
+    flex: 1,
     flexDirection: "row",
     justifyContent: "space-around",
-    alignItems:"center",
+    alignItems: "center",
+    gap: 2,
   },
-  plusIcon: {
+  defaultIcon: {
+    width: 70,
+    height: 40,
+    borderRadius: 40,
+    alignSelf: "center",
+    color: "#212121CC",
+    alignItems: "center",
+  },
+  focusedIcon: {
     backgroundColor: "rgba(255, 108, 0, 1)",
+    color: "#fff",
     width: 70,
     height: 40,
     borderRadius: 40,
     alignItems: "center",
-    
   }
 });

@@ -1,41 +1,88 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image , TextInput} from 'react-native';
 import { EvilIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { Pressable } from 'react-native';
 
+import React, { useState } from 'react';
+import BtnPublishPost from '../Components/BtnPublishPost';
+import { useNavigation } from '@react-navigation/native';
+import BtnDeletePost from '../Components/BtnDeletePost';
+
 const CreatePostsScreen = () => {
+  const [name, setName] = useState('');
+  const [location, setLocation] = useState('');
+  const navigation = useNavigation();
+
   return (
-    <View style={styled.container}>
-    <View > 
-          <Image style={styled.postPhoto} />
-          <Pressable style={styled.cameraIcon} > 
-            <Entypo
-              name="camera"
-              size={24}
-              color="#BDBDBD"
-              alignSelf="center"
-              />
-          </Pressable>
-          <Text style={[styled.postName, styled.typography]}> Завантажте фото </Text>
-          
-        </View>
+    <View style={{flex:1, justifyContent:"space-between", backgroundColor: '#fff',}} >
+      <View style={styled.container}>
 
-        <Text style={[styled.postName, styled.typography]}  >Назва...</Text>
-
-        <View style={styled.postWrapper}>
-          <View style={styled.comment}>           
-            
-            <Text>Comment</Text>
-          </View>
-          <View style={[styled.location, {alignItems:"center"}]}>
-            <EvilIcons name="location" size={24} color="#BDBDBD" />
-            <Text style={[styled.postName, styled.typography]}>Місцевість</Text>
-          </View>
-        </View>
+      <View style={styled.photoWrap}> 
+        <Image style={styled.postPhoto} />
+        <Pressable style={styled.cameraIcon} > 
+          <Entypo
+            name="camera"
+            size={24}
+            color="#BDBDBD"
+            alignSelf="center"
+            />
+        </Pressable>
+        <Text
+          style={{color: "#BDBDBD", fontSize: 16,}}>
+          Завантажте фото
+        </Text>
       </View>
+
+      <TextInput
+        placeholder="Назва..."
+        onChangeText={(newName) => setName(newName)}
+        value={name}
+        style={[styled.postInput]}
+      />
+
+      <View style={[styled.location, { alignItems: "center" }]}>
+          <EvilIcons name="location" size={24} color="#BDBDBD" />
+          <TextInput
+            placeholder="Місцевість"
+            onChangeText={(newLocation) => setLocation(newLocation)}
+            value={location}
+            style={[styled.postLocation]}
+          />
+      </View>
+
+      <BtnPublishPost onPress={() => navigation.navigate('Posts')}/>
+      </View>
+
+      <View style={styled.delete}>
+        <BtnDeletePost onPress={()=> navigation.navigate("Posts")}/>
+      </View>
+    </View>
  );
 };
 const styled = StyleSheet.create({
+  container: {
+    flex: 1,
+    //justifyContent:"space-between",
+    paddingTop:32,
+    paddingHorizontal:16,
+    backgroundColor: '#fff',
+    borderTopColor: 'rgba(0, 0, 0, 0.3)',
+    borderTopWidth: 1,
+    //borderBottomColor: 'rgba(0, 0, 0, 0.3)',
+    ///borderBottomWidth: 1,
+  },
+  photoWrap: {
+    marginBottom:32, 
+  },
+  postPhoto: {
+    width: '100%',
+    height: 240,
+    borderRadius: 8,
+    backgroundColor: '#F6F6F6',
+    borderColor: '#E8E8E8',
+    borderWidth: 1,
+    marginBottom:8,
+  },
   cameraIcon: {
     position: "absolute",
     top: 90,
@@ -46,78 +93,43 @@ const styled = StyleSheet.create({
     borderRadius: 60,
     backgroundColor:"#ffffff",
   },
-  postPhotoWrap: {
-    position: "absolute",
-    //top: -160,
+  postInput: {
+    marginBottom: 16,
+    height: 50,
+    paddingTop: 16,
+    paddingBottom:16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E8E8E8',
+    color: "#BDBDBD",
+    
+    fontSize: 16,
+    lineHeight: 19,
     
   },
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    borderTopColor: 'rgba(0, 0, 0, 0.3)',
-    borderBottomColor: 'rgba(0, 0, 0, 0.3)',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    paddingHorizontal:16,
-  },
-  user: {
-    marginTop: 32,
-    marginBottom: 32,
-    flexDirection: 'row',
-  },
-  userPhoto: {
-    width: 60,
-    height: 60,
-    borderRadius: 16,
-    backgroundColor: '#F6F6F6',
-  },
-  userDescription: {
-    marginLeft: 8,
-    justifyContent: 'center',
-  },
-  userName: {
-    // fontFamily: 'Roboto',
-    fontWeight: 'bold',
-    fontSize: 13,
-    lineHeight: 15,
-    color: '#212121',
-  },
-  userEmail: {
-    // fontFamily: 'Roboto',
-    fontWeight: 'bold',
-    fontSize: 11,
-    lineHeight: 13,
-    color: 'rgba(33, 33, 33, 0.8)',
-  },
-  post: {
-    marginBottom: 32,
-  },
-  typography: {
+  postLocation: {
+    height: 50,
+    color: "#BDBDBD",
+
     fontSize: 16,
-    color:"#BDBDBD",
-  },
-  postName: {
-    marginBottom: 8,
-    marginTop: 8,
-  },
-  postWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  postPhoto: {
-    width: '100%',
-    height: 240,
-    borderRadius: 8,
-    backgroundColor: '#F6F6F6',
-    borderColor: '#E8E8E8',
-    borderWidth: 1,
-  },
-  comment: {
-    flexDirection: 'row',
+    lineHeight: 19,
   },
   location: {
     flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#E8E8E8',
+    marginBottom: 32,
   },
+  delete: {
+    justifyContent:"center",
+    width: 70,
+    height: 40,
+    backgroundColor:"#F6F6F6",
+    alignItems: 'center',
+    marginBottom: 22,
+    borderRadius: 20,
+    alignSelf:"center",
+  }
 });
 
 export default CreatePostsScreen;
