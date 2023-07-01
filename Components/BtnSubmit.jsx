@@ -1,6 +1,6 @@
 import { Text, StyleSheet, Pressable } from 'react-native';
 
-const SubmitBtn = ({ title, onPress }) => {
+const BtnSubmit = ({ title, onPress }) => {
   return (
     <Pressable
       style={({ pressed }) => [!pressed ? styled.button : [styled.button, { backgroundColor: '#BDBDBD' }]]}
@@ -24,4 +24,4 @@ const styled = StyleSheet.create({
     color: 'white',
   },
 });
-export default SubmitBtn;
+export default BtnSubmit;

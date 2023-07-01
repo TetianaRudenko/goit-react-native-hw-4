@@ -1,37 +1,36 @@
-import { StyleSheet, Text, View, Image , TextInput} from 'react-native';
-import { EvilIcons } from '@expo/vector-icons';
-import { Entypo } from '@expo/vector-icons';
-import { Pressable } from 'react-native';
-
 import React, { useState } from 'react';
-import BtnPublishPost from '../Components/BtnPublishPost';
+import { StyleSheet, Text, View, Image , TextInput, Pressable} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { EvilIcons, Entypo } from '@expo/vector-icons';
+import BtnPublishPost from '../Components/BtnPublishPost';
 import BtnDeletePost from '../Components/BtnDeletePost';
+
 
 const CreatePostsScreen = () => {
   const [name, setName] = useState('');
   const [location, setLocation] = useState('');
+  //const [photo, setPhoto] = useState(null);
   const navigation = useNavigation();
 
   return (
     <View style={{flex:1, justifyContent:"space-between", backgroundColor: '#fff',}} >
+      
       <View style={styled.container}>
-
-      <View style={styled.photoWrap}> 
-        <Image style={styled.postPhoto} />
-        <Pressable style={styled.cameraIcon} > 
-          <Entypo
-            name="camera"
-            size={24}
-            color="#BDBDBD"
-            alignSelf="center"
-            />
-        </Pressable>
-        <Text
-          style={{color: "#BDBDBD", fontSize: 16,}}>
-          Завантажте фото
-        </Text>
-      </View>
+        <View style={styled.photoWrap}> 
+          <Image style={styled.postPhoto} />
+          <Pressable style={styled.cameraIcon} > 
+            <Entypo
+              name="camera"
+              size={24}
+              color="#BDBDBD"
+              alignSelf="center"
+              />
+          </Pressable>
+          <Text
+            style={{color: "#BDBDBD", fontSize: 16,}}>
+            Завантажте фото
+          </Text>
+        </View>
 
       <TextInput
         placeholder="Назва..."
@@ -41,21 +40,22 @@ const CreatePostsScreen = () => {
       />
 
       <View style={[styled.location, { alignItems: "center" }]}>
-          <EvilIcons name="location" size={24} color="#BDBDBD" />
-          <TextInput
-            placeholder="Місцевість"
-            onChangeText={(newLocation) => setLocation(newLocation)}
-            value={location}
-            style={[styled.postLocation]}
-          />
+        <EvilIcons name="location" size={24} color="#BDBDBD" />
+        <TextInput
+          placeholder="Місцевість"
+          onChangeText={(newLocation) => setLocation(newLocation)}
+          value={location}
+          style={[styled.postLocation]}
+        />
       </View>
-
-      <BtnPublishPost onPress={() => navigation.navigate('Posts')}/>
+        
+      <BtnPublishPost onPress={() => navigation.navigate("Posts")}/>
       </View>
 
       <View style={styled.delete}>
         <BtnDeletePost onPress={()=> navigation.navigate("Posts")}/>
       </View>
+      
     </View>
  );
 };

@@ -1,10 +1,20 @@
-import { StyleSheet,  View, Image } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
+import forest from "../assets/img/forest.jpg";
+import { Text } from 'react-native';
 
 
 const CommentsScreen = () => {
   return (
     <View style={styled.container}>
-      <Image style={styled.postPhoto} />
+      <Image style={styled.postPhoto} source={forest} />
+
+      <View style={styled.commentWrap}>
+
+      <Image style={styled.guestPhoto}></Image>
+      <Text>
+Really love your most recent photo. I’ve been trying to capture the same thing for a few months and would love some tips!
+      </Text>
+      </View>
     </View>
   );
 };
@@ -27,9 +37,21 @@ const styled = StyleSheet.create({
     borderColor: '#E8E8E8',
     borderWidth: 1,
     marginTop: 32,
-    marginBottom: 8,
+    marginBottom:32,
     alignItems: 'center',
   },
+  commentWrap: {
+    flex: 1,
+    flexDirection:"row",
+    //paddingHorizontal:16,
+  },
+  guestPhoto: {
+    width: 28,
+    height: 28,
+    backgroundColor: "red",
+    marginRight: 16,
+    borderRadius:50,
+  }
 });
 
 

@@ -1,28 +1,92 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, Pressable} from 'react-native';
 import { Feather, AntDesign } from '@expo/vector-icons';
+import avatar from "../assets/img/avatar.jpg";
+import forest from "../assets/img/forest.jpg"
 
-import { Pressable } from 'react-native';
+import {  EvilIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
 
-const PostsScreen = () => {
+const PostsScreen = ({ children }) => {
+  
+  const navigation = useNavigation();
+
   return (
     <View style={styled.container}>
 
       <View style={styled.user}>
-        <Image style={styled.userPhoto} />
+        <Image style={styled.userPhoto} source={avatar}/>
         <View style={styled.userDescription}>
           <Text style={styled.userName}>Natali Romanova</Text>
           <Text style={styled.userEmail}>email@example.com</Text>
         </View>
       </View>
+      <ScrollView>
+         <View style={styled.post}>
+            <Image style={styled.postPhoto} source={forest}/>
+            <Text style={styled.postName}>Ліс</Text>
+            <View style={styled.postWrapper}>
 
+            <Feather
+              name="message-circle"
+              size={24}
+              color="#FF6C00"
+              onPress={()=> navigation.navigate("Comments")}
+            />
+              <Text style={styled.comment}>8</Text>
+
+              <AntDesign name="like2" size={24} color="#FF6C00"/>
+              <Text style={styled.like}>153</Text>
+
+             
+              <Pressable style={styled.location}> 
+                <EvilIcons name="location" size={24} color="black" />
+                <Text  style={[styled.linkText, { textDecorationLine: "underline" }]}>Місцевіcть</Text>
+              </Pressable>
+              
+            </View>
+        </View>
+        
+         <View style={styled.post}>
+            <Image style={styled.postPhoto} source={forest}/>
+            <Text style={styled.postName}>Ліс</Text>
+            <View style={styled.postWrapper}>
+
+              <Feather name="message-circle" size={24} color="#FF6C00" onPress={()=> navigation.navigate("Comments")}/>
+              <Text style={styled.comment}>8</Text>
+
+              <AntDesign name="like2" size={24} color="#FF6C00"/>
+              <Text style={styled.like}>153</Text>
+
+             
+              <Pressable style={styled.location}> 
+                <EvilIcons name="location" size={24} color="black" />
+                <Text  style={[styled.linkText, { textDecorationLine: "underline" }]}>Місцевіcть</Text>
+              </Pressable>
+              
+            </View>
+        </View>
+        
+         <View style={styled.post}>
+            <Image style={styled.postPhoto} source={forest}/>
+            <Text style={styled.postName}>Ліс</Text>
+            <View style={styled.postWrapper}>
+
+              <Feather name="message-circle" size={24} color="#FF6C00"/>
+              <Text style={styled.comment}>8</Text>
+
+              <AntDesign name="like2" size={24} color="#FF6C00"/>
+              <Text style={styled.like}>153</Text>
+
+             
+              <Pressable style={styled.location}> 
+                <EvilIcons name="location" size={24} color="black" />
+                <Text  style={[styled.linkText, { textDecorationLine: "underline" }]}>Місцевіcть</Text>
+              </Pressable>
+              
+            </View>
+          </View>
+      </ScrollView>
       
     </View>
   );
@@ -79,7 +143,32 @@ const styled = StyleSheet.create({
     alignItems: "center",
     color: "#fff",
     
-  }
+  },
+   post: {
+    marginBottom: 32,
+  },
+  postName: {
+    marginBottom: 8,
+    marginTop: 8,
+  },
+  postWrapper: {
+    flexDirection: 'row',
+  },
+  postPhoto: {
+    width: '100%',
+    height: 240,
+    borderRadius: 8,
+    backgroundColor: '#F6F6F6',
+    borderColor: '#E8E8E8',
+    borderWidth: 1,
+  },
+  comment: {
+    marginRight: 24,
+  },
+  location: {
+    marginLeft: 'auto',
+    flexDirection: 'row',
+  },
 });
 
 export default PostsScreen;

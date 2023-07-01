@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, Pressable} from 'react-native';
 import { useNavigation} from '@react-navigation/native';
-import  SubmitBtn from '../Components/ButtonSubmit';
+import  BtnSubmit from '../Components/BtnSubmit';
 
 const LoginForm = () => { 
   const [email, setEmail] = useState('');
@@ -52,7 +52,7 @@ const LoginForm = () => {
         </Pressable>
       </View>
          
-      <SubmitBtn title="Увійти" onPress={handleFormSubmit} />
+      <BtnSubmit title="Увійти" onPress={handleFormSubmit} />
     
       <Pressable style={styled.linkWrap} > 
         <Text style={styled.linkText}> Немає акаунту? </Text>

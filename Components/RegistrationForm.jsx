@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View,} from 'react-native';
+import { Pressable, StyleSheet, Text, TextInput, View,} from 'react-native';
 import Avatar from "../Components/FormComponents/Avatar";
-import SubmitBtn from "../Components/ButtonSubmit";
+import BtnSubmit from "./BtnSubmit";
 import { useNavigation } from '@react-navigation/native';
 
 const RegistrationForm= () => {
@@ -67,14 +67,14 @@ const RegistrationForm= () => {
         </Pressable>
       </View>
      
-      <SubmitBtn title="Зареєстуватися" onPress={handleFormSubmit} />
+      <BtnSubmit title="Зареєстуватися" onPress={handleFormSubmit} />
        
         
       <Pressable style={styled.linkWrap} > 
         <Text style={styled.linkText}> Вже є акаунт? </Text>
         <Text
           style={[styled.linkText, { textDecorationLine: "underline" }]}
-          onPress={() => navigation.navigate("Login", { sessionId: 45, userId: "22e24" })}
+          onPress={() => navigation.navigate("Login")}
         >
           Увійти
         </Text>

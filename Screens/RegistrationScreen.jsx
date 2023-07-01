@@ -9,6 +9,7 @@ import {
 import imageBg from "../assets/img/imageBg.png";
 import RegistrationForm from "../Components/RegistrationForm";
 
+
 const RegistrationScreen = () => {
   
   return ( 

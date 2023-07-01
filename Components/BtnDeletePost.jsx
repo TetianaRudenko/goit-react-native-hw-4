@@ -1,5 +1,6 @@
 import { Pressable } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+
 const BtnDeletePost = ({ onPress }) => {
   return (
     <Pressable onPress={onPress}>
